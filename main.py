@@ -318,7 +318,7 @@ async def scan_ph(client, message):
         print(f"Error: {e}")
 
 @aibot.on_message(filters.command("gpt"))
-async def group_ai_reply(client, message):
+async def gpt(client, message):
     if message.chat.type == "private":
         return await message.reply_text("No need to use this here, send me your query directly!")
     
@@ -349,7 +349,9 @@ async def group_ai_reply(client, message):
     except Exception as e:
         await searching_message.edit_text("**⚠️ Sorry, an error occurred while fetching the response. Please try again later.**")
         print(f"Error: {e}")
-      
+
+
 # Run the bot
 aibot.run()
-    
+
+	
