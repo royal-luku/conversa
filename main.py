@@ -284,38 +284,46 @@ async def handle_media(client, message):
         await message.reply_text("❌ **An error occurred while processing your request.**")
         print(f"Error: {e}")
 
-
 @aibot.on_message(filters.command("scan_img"))
 async def scan_ph(client, message):
-    if message.chat.type == "private":
-        return await message.reply_text("❗ You don't need to use this command here. Send me your query directly!")
+    # Check if the message is in a group or supergroup
+    if message.chat.type not in ["group", "supergroup"]:
+        return await message.reply_text("❗ This command is for groups only. Please use it in a group!")
 
-    reply = message.reply_to_message    
-    if not reply:
+    # Check if the message is a reply to a photo
+    reply = message.reply_to_message
+    if not reply or not reply.photo:
         return await message.reply_text("📸 Please reply to a photo to use this command!")
-    if not reply.photo:
-        return await message.reply_text("📸 The replied message is not a photo!")
-    
+
+    # Extract the query from the command text
     query = message.text.split(" ", 1)[1] if len(message.text.split(" ")) > 1 else ""    
     if not query:
         return await message.reply_text("❗ Please provide a query! For example: `/scan_img tell me about this image`")
 
+    # Let the user know the bot is processing the image
     k = await message.reply_text(f"🔍 {message.from_user.mention}, Please wait while I check...")
+
     try:
+        # Download the image
         media = await reply.download()
         await k.edit("✅ Successfully downloaded the image, now checking your query...")
+
+        # ImageUploader and API call for the query
         mag = ImageUploader(media)
         img_url = mag.upload()
         api_url = "https://horridapi.onrender.com/search"
         response = requests.get(f"{api_url}?img={img_url}&query={query}")
+        
         if response.status_code == 200:
             result = response.json()
             await k.edit(f"👤 {message.from_user.mention}, here's what I found: {result.get('response', 'No details found.')}")
         else:
             await k.edit("⚠️ There was an error processing your request. Please try again later.")
+    
     except Exception as e:
         await k.edit("❌ **An error occurred while processing your request.**")
         print(f"Error: {e}")
+	
 
 @aibot.on_message(filters.command("gpt"))
 async def gpt(client, message):
