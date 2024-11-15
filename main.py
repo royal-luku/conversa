@@ -233,6 +233,24 @@ async def private_ai_reply(client, message):
 api = "https://horridapi.onrender.com/search"
 @aibot.on_message(filters.media)
 async def handle_media(client, message):
+    if UPDATE_CHANNEL:
+        try:
+            user = await client.get_chat_member(UPDATE_CHANNEL, message.chat.id)
+            if user.status == "kicked":
+                await message.reply_text(text="**You are banned 🚫**")
+                return
+        except UserNotParticipant:
+            await message.reply_text(
+                text=f"**{message.from_user.mention} 👋\n\nJoin My Updated Channel to use me. (without join you can't use me)**",
+                reply_markup=InlineKeyboardMarkup(
+                    [[InlineKeyboardButton(text="✨ Join channel to continue", url=f"https://telegram.me/{UPDATE_CHANNEL}")]]
+                )
+            )
+            return
+        except Exception as error:
+            print(error)
+            await message.reply_text(text=f"<b>Something went wrong contact my <a href='https://telegram.me/{SUPPORT_USERNAME}'>Developer</a> ‼️</b>", disable_web_page_preview=True)
+            return
     try:
         if message.photo:
             if message.caption:  # If caption is available
@@ -265,6 +283,7 @@ async def handle_media(client, message):
     except Exception as e:
         await message.reply_text("❌ **An error occurred while processing your request.**")
         print(f"Error: {e}")
+		    
 
 # Run the bot
 aibot.run()
