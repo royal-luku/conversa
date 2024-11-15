@@ -1,10 +1,9 @@
 import requests
 from Mangandi import ImageUploader
 from pyrogram import Client, filters
-from main import aibot
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-@aibot.on_message(filters.command("scan_img"))
+@Client.on_message(filters.command("scan_img"))
 async def scan_ph(client, message):
     if message.chat.type == "private":
         return await message.reply_text("❗ You don't need to use this command here. Send me your query directly!")
@@ -36,7 +35,7 @@ async def scan_ph(client, message):
         await k.edit("❌ **An error occurred while processing your request.**")
         print(f"Error: {e}")
 
-@aibot.on_message(filters.command("gpt"))
+@Client.on_message(filters.command("gpt"))
 async def group_ai_reply(client, message):
     if message.chat.type == "private":
         return await message.reply_text("No need to use this here, send me your query directly!")
