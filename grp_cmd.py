@@ -2,6 +2,7 @@ import requests
 from Mangandi import ImageUploader
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from vars import *
 
 @Client.on_message(filters.command("scan_img"))
 async def scan_ph(client, message):
