@@ -284,12 +284,9 @@ async def handle_media(client, message):
         await message.reply_text("❌ **An error occurred while processing your request.**")
         print(f"Error: {e}")
 
-@aibot.on_message(filters.command("scan_img"))
+@aibot.on_message(filters.group & filters.command("scan_img"))
 async def scan_ph(client, message):
     # Check if the message is in a group or supergroup
-    if message.chat.type not in ["group", "supergroup"]:
-        return await message.reply_text("❗ This command is for groups only. Please use it in a group!")
-
     # Check if the message is a reply to a photo
     reply = message.reply_to_message
     if not reply or not reply.photo:
@@ -325,11 +322,8 @@ async def scan_ph(client, message):
         print(f"Error: {e}")
 	
 
-@aibot.on_message(filters.command("gpt"))
+@aibot.on_message(filters.group & filters.command("gpt"))
 async def gpt(client, message):
-    if message.chat.type == "private":
-        return await message.reply_text("No need to use this here, send me your query directly!")
-    
     input_text = message.text.split(" ", 1)[1] if len(message.text.split(" ")) > 1 else ""
     if not input_text:
         return await message.reply_text("❗ Please provide a query! For example: `/gpt your question`")
