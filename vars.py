@@ -10,7 +10,7 @@ BOT_TOKEN = os.getenv("BOT_TOKEN", "7636709703:AAHLlebiXdoIKqHEd3SDBfaAzp5JWxZuj
 # ===================================================
 BOT_OWNER = int(os.getenv("BOT_OWNER", "7039261734")) # BOT OWNER TELEGRAM ID
 AI_LOGS = int(os.getenv("AI_LOGS", "-1002331922167")) # AI REPLY LOGS CHANNEL ID
-LOG_CHANNEL = int(os.getenv("LOG_CHANNEL", "-1002331922167")) # LOG CHANNEL ID
+LOG_CHANNEL = int(os.getenv("LOG_CHANNEL", "-1002357280948")) # LOG CHANNEL ID
 UPDATE_CHANNEL = os.getenv("UPDATE_CHANNEL", "werdevelopers") # FOR FSUB CHANNEL USERNAME WITHOUT @
 # ===================================================
 
