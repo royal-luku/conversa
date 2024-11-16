@@ -21,7 +21,6 @@ DATABASE_NAME = os.getenv("DATABASE_NAME", "CONVERSA")
 # =====================================================
 
 TUTORIAL_VIDEO_LINK = os.getenv("TUTORIAL_VIDEO_LINK", "https://t.me/Hotstar_movies_online/119")
-AUTO_DEL_TIME = os.getenv("AUTO_DEL_TIME", "60") #5min
 
 # SCRIPT SECTION
 # =====================================================
