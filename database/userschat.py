@@ -1,6 +1,6 @@
 import motor
 from motor.motor_asyncio import AsyncIOMotorClient
-
+from vars import DATABASE_URL, DATABASE_NAME
 
 class Database:
     def __init__(self, url, database_name):
@@ -29,3 +29,6 @@ class Database:
 
     async def delete_user(self, user_id):
         await self.col.delete_many({'id': int(user_id)})
+
+
+db = Database(DATABASE_URL, "AIChatbot")
