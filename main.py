@@ -144,7 +144,7 @@ async def users_broadcast(bot, message):
 @aibot.on_callback_query(filters.regex('home'))
 async def home_callback(client, callback_query):
     await callback_query.message.edit_text(
-        text=START_TEXT.format(callback_query.from_user.mention, BOT_NAME),
+        text=START_TEXT.format(callback_query.from_user.mention),
         reply_markup=InlineKeyboardMarkup(
             [
                 [InlineKeyboardButton('✨ Updates Channel', url=f"https://t.me/{UPDATE_CHANNEL}")],
@@ -250,7 +250,6 @@ async def private_ai_reply(client, message):
             )
             await searching_message.edit_text(
                 f"**{message.from_user.mention},** {response_text}",
-                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('Close', callback_data='close')]])
             )
         else:
             await searching_message.edit_text("**⚠️ Sorry, could not fetch a valid response. Please try again later.**")
@@ -300,9 +299,9 @@ async def handle_media(client, message):
                 )
                 return
             
-            k = await message.reply_text(f"🔍 {message.from_user.mention}, Please wait while I check...")
+            k = await message.reply_text(f"**🔍 {message.from_user.mention}, Please wait....**")
             media = await message.download()
-            m = await k.edit("✅ Successfully downloaded the image, now checking your query...")
+            m = await k.edit("**checking your query...**")
 
             mag = ImageUploader(media)
             api = "https://horridapi.onrender.com/search"
