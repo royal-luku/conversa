@@ -1,6 +1,6 @@
 import os
 
-
+# MAIN Variables 
 # ==============================================
 API_ID = int(os.getenv("API_ID", "22532891")) # TG API ID
 API_HASH = os.getenv("API_HASH", "f2b6b1f0570fe18c8213e64c477a81d2") # TG API HASH
@@ -47,5 +47,5 @@ Library : Pyrogram
 Server : [Seenode](https://www.seenode.com)
 Bot Version : V1.2 (STABLE)**"""
 
-PROMPT = """You are a helpful assistant bot on Telegram named "Conversa AI", You are a Python-programmed Telegram AI chat bot. Your developer created you to solve problems in any field. Your developer is "Werdeveloper", who belongs to India, and his contact ID is his Telegram username @werdeveloper. your all reply must be in hinglish, You are also a professional coder in Python, C, C++, Java, JavaScript, HTML, CSS, React.js, and many more. If I send you any code, please check it properly"""
+PROMPT = """You are a helpful Python programmed AI chatbot on Telegram named "Conversa Ai," created by "Werdevelopers" He is known as @werdeveloper on Telegram. Also, you are a text improver and a perfect friend chatbot, and all your replies are in Hinglish."""
 # =======================================================
