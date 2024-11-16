@@ -1,5 +1,4 @@
 ### [CONVERSA AI CHAT BOT](https://telegram.me/conversaaibot)
-<h3><b>It's a Telegram AI chat bot that replies to all your messages in private chat and can also scan images.</b></h3>
 
 ### Features 
 - **Auto Ai Reply**
