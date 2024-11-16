@@ -2,11 +2,11 @@
 
 
 ### Features 
-- Auto Ai Reply
-- Image Scan Feature
-- Customized Prompt
-- Customized UI
-- Normal Or pin broadcast
+- **Auto Ai Reply**
+- **Image Scan Feature**
+- **Customized Prompt**
+- **Customized UI**
+- **Normal Or pin broadcast**
 
 ### Start Command 
 ```
@@ -18,7 +18,7 @@ pip install -r requirements.txt
 ```
 
 ### Deploy Tutorial ?
-- Watch now in hindi only on Youtube
+- **[Watch now in hindi only on Youtube]()**
 
 ### Credit ❤️
-- Full credit to [Ashlynn Repository](http://github.com/Itz-Ashlynn) for creating a great API for AI chat replies; without his unforgettable work, this repository would be nothing.
+- **Full credit to [Ashlynn Repository](http://github.com/Itz-Ashlynn) for creating a great API for AI chat replies; without his unforgettable work, this repository would be nothing.**
