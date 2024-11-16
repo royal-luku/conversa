@@ -322,8 +322,11 @@ async def scan_ph(client, message):
         print(f"Error: {e}")
 	
 
-@aibot.on_message(filters.group & filters.command("gpt"))
+@aibot.on_message(filters.command("gpt"))
 async def gpt(client, message):
+    if message.chat.type not in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
+        return await message.reply_text("❗ This command can only be used in groups.")
+
     input_text = message.text.split(" ", 1)[1] if len(message.text.split(" ")) > 1 else ""
     if not input_text:
         return await message.reply_text("❗ Please provide a query! For example: `/gpt your question`")
