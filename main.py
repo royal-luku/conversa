@@ -76,7 +76,7 @@ async def start(client, message):
             text=f"**#NewUser\n\n👤 {message.from_user.mention}** (`{message.from_user.id}`)"
         )
     await message.reply_text(
-        START_TEXT.format(message.from_user.mention, BOT_NAME),
+        START_TEXT.format(message.from_user.mention),
         reply_markup=InlineKeyboardMarkup(
             [
                 [InlineKeyboardButton('✨ Updates Channel', url=f"https://t.me/{UPDATE_CHANNEL}")],
