@@ -31,4 +31,4 @@ class Database:
         await self.col.delete_many({'id': int(user_id)})
 
 
-db = Database(DATABASE_URL, "AIChatbot")
+db = Database(DATABASE_URL, DATABASE_NAME)
