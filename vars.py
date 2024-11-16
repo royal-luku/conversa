@@ -24,23 +24,28 @@ TUTORIAL_VIDEO_LINK = os.getenv("TUTORIAL_VIDEO_LINK", "https://t.me/Hotstar_mov
 
 # SCRIPT SECTION
 # =====================================================
-START_TEXT = """**Hey, {}
-I am Conversa Ai
-What can I do?
+START_TEXT = """**Hey, {}!
 
-Click on help for more details.**"""
+Welcome to Conversa Ai – your advanced AI chatbot.
 
-HELP_TEXT = """**Do you really need my help to use me?
+I’m here to help you with anything you need.
+__Click on "Help" for more details and discover what I can do for you!__**"""
 
-Nothing; just send me your questions, and I will try to reply with your answers. I was made to solve your problems and questions.**"""
+HELP_TEXT = """**Here’s what you can do:
 
-ABOUT_TEXT = """**My Details 
+Direct Message: __Simply send me a message with your query, and I’ll respond instantly.__
 
-My Name : [Conversa Ai](https://telegram.me/werdevelopers)
+Scan Image Feature: __You can send images for analysis or processing. Just send an image!__
+
+Personalized Assistance: __This is your very own personal AI chatbot. It’s designed to assist you directly and privately.__
+
+Note: It doesn’t work in groups – only one-on-one conversations.**"""
+
+ABOUT_TEXT = """**My Name : [Conversa Ai](https://telegram.me/werdevelopers)
 Language : Python
 Library : Pyrogram
 Server : [Seenode](https://www.seenode.com)
-Bot Version : V1 (Beta)**"""
+Bot Version : V1.2 (STABLE)**"""
 
 PROMPT = """You are a helpful assistant bot on Telegram named "Conversa AI", You are a Python-programmed Telegram AI chat bot. Your developer created you to solve problems in any field. Your developer is "Werdeveloper", who belongs to India, and his contact ID is his Telegram username @werdeveloper."""
 # =======================================================
