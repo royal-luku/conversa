@@ -251,6 +251,8 @@ async def private_ai_reply(client, message):
                 f"**{message.from_user.mention},** {response_text}",
                 reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('Close', callback_data='close')]])
             )
+		await asyncio.sleep(AUTO_DEL_TIME)
+		await searching_message.delete()
         else:
             await searching_message.edit_text("**⚠️ Sorry, could not fetch a valid response. Please try again later.**")
     except Exception:
@@ -293,7 +295,7 @@ async def handle_media(client, message):
             if message.caption:
                 query = message.caption
             else:
-                tutorial_button = InlineKeyboardButton("📖 Tutorial", callback_data="tutorial")
+                tutorial_button = InlineKeyboardButton("Tutorial 📌", callback_data="tutorial")
                 reply_markup = InlineKeyboardMarkup([[tutorial_button]])
                 await message.reply_text(
                     "**❗ Please send the photo with a caption. In the caption, describe the problem or query you want to check.**",
@@ -313,6 +315,8 @@ async def handle_media(client, message):
             if response.status_code == 200:
                 result = response.json()
                 await m.edit(f"👤 {message.from_user.mention}, here's what I found:\n\n{result['response']}")
+		    await asyncio.sleep(AUTO_DEL_TIME)
+		    await m.delete()
             else:
                 await m.edit("⚠️ There was an error processing your request. Please try again later.")
         elif message.video or message.animation:
