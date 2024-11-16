@@ -201,6 +201,7 @@ async def close_callback(client, callback_query):
 # 		AI CHATS
 # ==========================================
 
+
 @aibot.on_message(filters.private & filters.text)
 async def private_ai_reply(client, message):
     input_text = message.text
@@ -251,16 +252,13 @@ async def private_ai_reply(client, message):
                 f"**{message.from_user.mention},** {response_text}",
                 reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('Close', callback_data='close')]])
             )
-	    await asyncio.sleep(AUTO_DEL_TIME)
-	    await searching_message.delete()
+            await asyncio.sleep(AUTO_DEL_TIME)
+            await searching_message.delete()
         else:
             await searching_message.edit_text("**⚠️ Sorry, could not fetch a valid response. Please try again later.**")
-    except Exception:
+    except Exception as e:
         await searching_message.edit_text("**⚠️ Sorry, an error occurred while fetching the response. Please try again later.**")
-
-
-
-
+        print(f"Error: {e}")
 
 # ==========================================
 # 	    IMAGE SCAN CODE
@@ -290,6 +288,7 @@ async def handle_media(client, message):
                 disable_web_page_preview=True
             )
             return
+    
     try:
         if message.photo:
             if message.caption:
@@ -315,8 +314,8 @@ async def handle_media(client, message):
             if response.status_code == 200:
                 result = response.json()
                 await m.edit(f"👤 {message.from_user.mention}, here's what I found:\n\n{result['response']}")
-		await asyncio.sleep(AUTO_DEL_TIME)
-		await m.delete()
+                await asyncio.sleep(AUTO_DEL_TIME)
+                await m.delete()
             else:
                 await m.edit("⚠️ There was an error processing your request. Please try again later.")
         elif message.video or message.animation:
