@@ -20,7 +20,7 @@ DATABASE_URL = os.getenv("DATABASE_URL",  "mongodb+srv://starcinebot:mkooaa@werd
 DATABASE_NAME = os.getenv("DATABASE_NAME", "CONVERSA")
 # =====================================================
 
-TUTORIAL_VIDEO_LINK = os.getenv("TUTORIAL_VIDEO_LINK", "https://t.me/Hotstar_movies_online/119")
+TUTORIAL_VIDEO_LINK = os.getenv("TUTORIAL_VIDEO_LINK", "https://t.me/Hotstar_movies_online/120")
 
 # SCRIPT SECTION
 # =====================================================
