@@ -308,7 +308,7 @@ async def handle_media(client, message):
             img_url = mag.upload()
             response = requests.get(f"{api}?question={prompt}&image={img_url}")
             
-            if response.code == 200:
+            if response.status_code == 200:
                 result = response.json()
                 await m.edit(f"👤 {message.from_user.mention}, here's what I found:\n\n{result['message']}")
             else:
