@@ -302,7 +302,7 @@ async def handle_media(client, message):
             k = await message.reply_text(f"**🔍 {message.from_user.mention}, Please wait....**")
             media = await message.download()
             m = await k.edit("**checking your query...**")
-	    prompt = query.replace(" ", "+")
+            prompt = query.replace(" ", "+")  # Fixed indentation issue
             mag = ImageUploader(media)
             api = "https://nexlynx.ashlynn.workers.dev/api/titan"
             img_url = mag.upload()
@@ -318,6 +318,8 @@ async def handle_media(client, message):
     except Exception as e:
         await message.reply_text("❌ **An error occurred while processing your request.**")
         print(f"Error: {e}")
+
+
 
 
 # ==========================================
