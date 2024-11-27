@@ -302,11 +302,11 @@ async def handle_media(client, message):
             k = await message.reply_text(f"**🔍 {message.from_user.mention}, Please wait....**")
             media = await message.download()
             m = await k.edit("**checking your query...**")
-
+	    prompt = query.replace(" ", "+")
             mag = ImageUploader(media)
-            api = "https://horridapi.onrender.com/search"
+            api = "https://nexlynx.ashlynn.workers.dev/api/titan"
             img_url = mag.upload()
-            response = requests.get(f"{api}?img={img_url}&query={query}")
+            response = requests.get(f"{api}?question={prompt}&image={img_url}")
             
             if response.status_code == 200:
                 result = response.json()
