@@ -308,9 +308,9 @@ async def handle_media(client, message):
             img_url = mag.upload()
             response = requests.get(f"{api}?question={prompt}&image={img_url}")
             
-            if response.status_code == 200:
+            if response.code == 200:
                 result = response.json()
-                await m.edit(f"👤 {message.from_user.mention}, here's what I found:\n\n{result['response']}")
+                await m.edit(f"👤 {message.from_user.mention}, here's what I found:\n\n{result['message']}")
             else:
                 await m.edit("⚠️ There was an error processing your request. Please try again later.")
         elif message.video or message.animation:
