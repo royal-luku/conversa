@@ -271,8 +271,7 @@ async def handle_media(client, message):
                 return
         except UserNotParticipant:
             await message.reply_text(
-                text=f"**{
-                    message.from_user.mention} 👋\n\nJoin My Updated Channel to use me. (without join you can't use me)**",
+                text=f"**{message.from_user.mention} 👋\n\nJoin My Updated Channel to use me. (without join you can't use me)**",
                 reply_markup=InlineKeyboardMarkup(
                     [[InlineKeyboardButton(
                         text="Join Now", url=f"https://telegram.me/{UPDATE_CHANNEL}")]]
@@ -282,8 +281,7 @@ async def handle_media(client, message):
         except Exception as error:
             print(error)
             await message.reply_text(
-                text=f"<b>Something went wrong contact my <a href='https://telegram.me/{
-                    SUPPORT_USERNAME}'>Developer</a> ‼️</b>",
+                text=f"<b>Something went wrong contact my <a href='https://telegram.me/{SUPPORT_USERNAME}'>Developer</a> ‼️</b>",
                 disable_web_page_preview=True
             )
             return
@@ -320,8 +318,7 @@ async def handle_media(client, message):
                     if response.status_code == 200:
                         image_url = response.text.strip()
                     else:
-                        raise Exception(f"Upload failed with status code {
-                                        response.status_code}")
+                        raise Exception(f"Upload failed with status code {response.status_code}")
             except Exception as upload_error:
                 await downloading_message.edit_text(f"**Upload failed: {upload_error}**")
                 return
@@ -341,9 +338,8 @@ async def handle_media(client, message):
                 result = response.json()
                 await aibot.send_photo(
                     chat_id=AI_LOGS,
-                    photo=image_url
-                    caption=f"👤 {message.from_user.mention} (`{message.from_user.id}`)\n\n**Query: {
-                        query}**\n\n**AI Response:\n{result['message']}**",
+                    photo=image_url,
+                    caption=f"👤 {message.from_user.mention} (`{message.from_user.id}`)\n\n**Query: {query}**\n\n**AI Response:\n{result['message']}**",
                     reply_markup=InlineKeyboardMarkup(
                         [[InlineKeyboardButton('Close', callback_data='close')]])
                 )
@@ -368,12 +364,12 @@ def upload_image_requests(media_path):
             if response.status_code == 200:
                 return response.text.strip()
             else:
-                raise Exception(f"Upload failed with status code {
-                                response.status_code}")
+                raise Exception(f"Upload failed with status code {response.status_code}")
 
     except Exception as e:
         print(f"Error during upload: {e}")
         return None
+
 
 # ==========================================
 #            RUN THE CODE
