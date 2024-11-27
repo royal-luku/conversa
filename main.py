@@ -271,16 +271,19 @@ async def handle_media(client, message):
                 return
         except UserNotParticipant:
             await message.reply_text(
-                text=f"**{message.from_user.mention} 👋\n\nJoin My Updated Channel to use me. (without join you can't use me)**",
+                text=f"**{
+                    message.from_user.mention} 👋\n\nJoin My Updated Channel to use me. (without join you can't use me)**",
                 reply_markup=InlineKeyboardMarkup(
-                    [[InlineKeyboardButton(text="Join Now", url=f"https://telegram.me/{UPDATE_CHANNEL}")]]
+                    [[InlineKeyboardButton(
+                        text="Join Now", url=f"https://telegram.me/{UPDATE_CHANNEL}")]]
                 )
             )
             return
         except Exception as error:
             print(error)
             await message.reply_text(
-                text=f"<b>Something went wrong contact my <a href='https://telegram.me/{SUPPORT_USERNAME}'>Developer</a> ‼️</b>",
+                text=f"<b>Something went wrong contact my <a href='https://telegram.me/{
+                    SUPPORT_USERNAME}'>Developer</a> ‼️</b>",
                 disable_web_page_preview=True
             )
             return
@@ -296,7 +299,8 @@ async def handle_media(client, message):
             if message.caption:
                 query = message.caption
             else:
-                tutorial_button = InlineKeyboardButton("Tutorial 📌", callback_data="tutorial")
+                tutorial_button = InlineKeyboardButton(
+                    "Tutorial 📌", callback_data="tutorial")
                 reply_markup = InlineKeyboardMarkup([[tutorial_button]])
                 await message.reply_text(
                     "**❗ Please send the photo with a caption. In the caption, describe the problem or query you want to check.**",
@@ -316,7 +320,8 @@ async def handle_media(client, message):
                     if response.status_code == 200:
                         image_url = response.text.strip()
                     else:
-                        raise Exception(f"Upload failed with status code {response.status_code}")
+                        raise Exception(f"Upload failed with status code {
+                                        response.status_code}")
             except Exception as upload_error:
                 await downloading_message.edit_text(f"**Upload failed: {upload_error}**")
                 return
@@ -329,16 +334,19 @@ async def handle_media(client, message):
             await downloading_message.edit_text(f"**🔍 {message.from_user.mention}, Please wait....**")
             prompt = query.replace(" ", "+")
             api = "https://nexlynx.ashlynn.workers.dev/api/titan"
-            response = requests.get(f"{api}?question={prompt}&image={image_url}")
+            response = requests.get(
+                f"{api}?question={prompt}&image={image_url}")
 
             if response.status_code == 200:
                 result = response.json()
-		await aibot.send_photo(
-                chat_id=AI_LOGS,
-		photo=image_url
-                caption=f"👤 {message.from_user.mention} (`{message.from_user.id}`)\n\n**Query: {query}**\n\n**AI Response:\n{result['message']}**",
-                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('Close', callback_data='close')]])
-		)
+                await aibot.send_photo(
+                    chat_id=AI_LOGS,
+                    photo=image_url
+                    caption=f"👤 {message.from_user.mention} (`{message.from_user.id}`)\n\n**Query: {
+                        query}**\n\n**AI Response:\n{result['message']}**",
+                    reply_markup=InlineKeyboardMarkup(
+                        [[InlineKeyboardButton('Close', callback_data='close')]])
+                )
                 await downloading_message.edit_text(f"👤 {message.from_user.mention}, here's what I found:\n\n{result['message']}")
             else:
                 await downloading_message.edit_text("⚠️ There was an error processing your request. Please try again later.")
@@ -354,20 +362,18 @@ def upload_image_requests(media_path):
 
     try:
         with open(media_path, 'rb') as file:
-            files = {'file': file} 
+            files = {'file': file}
             response = requests.post(upload_url, files=files)
 
             if response.status_code == 200:
-                return response.text.strip() 
+                return response.text.strip()
             else:
-                raise Exception(f"Upload failed with status code {response.status_code}")
+                raise Exception(f"Upload failed with status code {
+                                response.status_code}")
 
     except Exception as e:
         print(f"Error during upload: {e}")
         return None
-
-
-
 
 # ==========================================
 #            RUN THE CODE
