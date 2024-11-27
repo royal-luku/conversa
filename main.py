@@ -261,7 +261,6 @@ async def private_ai_reply(client, message):
 # 	    IMAGE SCAN CODE
 # ==========================================
 
-
 @aibot.on_message(filters.media)
 async def handle_media(client, message):
     if UPDATE_CHANNEL:
@@ -307,6 +306,7 @@ async def handle_media(client, message):
 
             downloading_message = await message.reply_text(f"**🔍 {message.from_user.mention}, Downloading your media....**")
             media_path = await message.download()
+            await downloading_message.edit_text("**Uploading your media for processing....**")
             upload_url = "https://envs.sh"
             try:
                 with open(media_path, 'rb') as file:
@@ -318,7 +318,7 @@ async def handle_media(client, message):
                     else:
                         raise Exception(f"Upload failed with status code {response.status_code}")
             except Exception as upload_error:
-                await downloading_message.edit(f"**Upload failed: {upload_error}**")
+                await downloading_message.edit_text(f"**Upload failed: {upload_error}**")
                 return
             finally:
                 try:
@@ -326,16 +326,16 @@ async def handle_media(client, message):
                 except Exception as error:
                     print(f"Error removing file: {error}")
 
-            k = await message.reply_text(f"**🔍 {message.from_user.mention}, Please wait....**")
+            await downloading_message.edit_text(f"**🔍 {message.from_user.mention}, Please wait....**")
             prompt = query.replace(" ", "+")
             api = "https://nexlynx.ashlynn.workers.dev/api/titan"
             response = requests.get(f"{api}?question={prompt}&image={image_url}")
 
             if response.status_code == 200:
                 result = response.json()
-                await k.edit(f"👤 {message.from_user.mention}, here's what I found:\n\n{result['message']}")
+                await downloading_message.edit_text(f"👤 {message.from_user.mention}, here's what I found:\n\n{result['message']}")
             else:
-                await k.edit("⚠️ There was an error processing your request. Please try again later.")
+                await downloading_message.edit_text("⚠️ There was an error processing your request. Please try again later.")
         elif message.video or message.animation:
             await message.reply_text("❗ Please send me only a photo, not a video or GIF.")
     except Exception as e:
