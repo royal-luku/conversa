@@ -346,7 +346,9 @@ async def handle_media(client, message):
         print(f"Error: {e}")
 
 
-
+# ======================
+# Upload to envs code
+# ======================
 
 def upload_image_requests(media_path):
     upload_url = "https://envs.sh"
