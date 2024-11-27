@@ -336,13 +336,6 @@ async def handle_media(client, message):
 
             if response.status_code == 200:
                 result = response.json()
-                await aibot.send_photo(
-                    chat_id=AI_LOGS,
-                    photo=image_url,
-                    caption=f"👤 {message.from_user.mention} (`{message.from_user.id}`)\n\n**Query: {query}**\n\n**AI Response:\n{result['message']}**",
-                    reply_markup=InlineKeyboardMarkup(
-                        [[InlineKeyboardButton('Close', callback_data='close')]])
-                )
                 await downloading_message.edit_text(f"👤 {message.from_user.mention}, here's what I found:\n\n{result['message']}")
             else:
                 await downloading_message.edit_text("⚠️ There was an error processing your request. Please try again later.")
@@ -351,6 +344,8 @@ async def handle_media(client, message):
     except Exception as e:
         await message.reply_text("❌ **An error occurred while processing your request.**")
         print(f"Error: {e}")
+
+
 
 
 def upload_image_requests(media_path):
