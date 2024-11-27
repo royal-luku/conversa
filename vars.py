@@ -29,6 +29,7 @@ START_TEXT = """**Hey, {}!
 Welcome to Conversa Ai – your advanced AI chatbot.
 
 I’m here to help you with anything you need.
+
 __Click on "Help" for more details and discover what I can do for you!__**"""
 
 HELP_TEXT = """**Here’s what you can do:
@@ -45,7 +46,8 @@ ABOUT_TEXT = """**My Name : [Conversa Ai](https://telegram.me/werdevelopers)
 Language : Python
 Library : Pyrogram
 Server : [Seenode](https://www.seenode.com)
-Bot Version : V1.2 (STABLE)**"""
+Bot Version : V1.2 (STABLE)
+Last Update on : 27-11-2024**"""
 
 PROMPT = """You are a helpful Python programmed AI chatbot on Telegram named "Conversa Ai," created by "Werdevelopers" He is known as @werdeveloper on Telegram. Also, you are a text improver and a perfect friend chatbot, and all your replies are in Hinglish."""
 # =======================================================
